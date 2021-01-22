@@ -33,7 +33,6 @@ app.get('/data/json', (req, res) => {
   let results = new Object;
   // Collect results for each parameter in request
   for (const paramName in req.query) {
-    console.log("Current paramName = ", paramName);
     // handle any bad request parameters
     if (!isValidDataJsonParameter(paramName, res)) return;
 
@@ -49,7 +48,6 @@ function getResultsForParameter(name, value) {
   let results = BRX_SIM_DATA[name];
   // Handle if this is an Array and the request included a valid number of items, given the Sim data we have
   let count = getCountFromValue(value);
-  console.log(Array.isArray(results), count);
   if (Array.isArray(results) && count > 0) {
       if (count < results.length) {
         return results.slice(0,count);
@@ -70,9 +68,6 @@ function logDataRequestParameters(req) {
   for (const key in req.query) {
     console.log("Called /data/json with parameter:",key, req.query[key]);
   }
-  let paramNames = Object.keys(req.query);
-  console.log("Parameter Names", paramNames.join());
-
 }
 
 function isEmptyQuery(query, res) {
