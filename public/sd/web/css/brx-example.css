@@ -78,6 +78,10 @@
     padding: 32px;
   }
   
+    .main-container {
+        padding: 10px;
+    }
+
   .row {
     display: -ms-flexbox; /* IE10 */
     display: flex;
@@ -115,6 +119,22 @@
     padding: 10px 13px;
   }
   
+  .logo {
+    padding: 10px 5px;
+  }
+
+  a.logo:hover {
+      background-color: inherit;
+  }
+
+  .delete-btn {
+    background-color: transparent;
+    color:black;
+    height: 15px;
+    border: none;
+    text-align: center;
+    cursor: pointer;
+  }
   
   @media screen and (max-width: 600px) {
     .topnav a:not(:first-child) {display: none;}

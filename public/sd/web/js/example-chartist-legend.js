@@ -41,7 +41,7 @@ function add() {
             var cell7 = row.insertCell(6);
             cell1.innerHTML = `
                 <button type="button"
-                    style="background-color:transparent;color:black;height:15px;border: none;text-align: center;" 
+                    class="delete-btn" 
                     onclick="deleteR(${tags.length})">
                     x
                 </button>
