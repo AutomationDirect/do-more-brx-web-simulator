@@ -70,7 +70,7 @@ csvhttp.onreadystatechange = function() {
             cell2.style.color = colors[i - 1];
             cell2.style.fontWeight = 'bold';
             cell7.innerHTML = `
-                <form id= "interp-` + headers[i].replaceAll('"','') + `" onchange="updateInterp(\'`+ headers[i].replaceAll('"','') + `\')">
+                <form id= "interp-${headers[i].replaceAll('"','')}" onchange="updateInterp(\'${headers[i].replaceAll('"','')}\')">
                     <input type="radio" name = "ans" > None 
                     <input type="radio" name = "ans" checked> Simple 
                     <input type="radio" name = "ans" > Step 
