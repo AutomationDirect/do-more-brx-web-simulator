@@ -37,8 +37,8 @@ function parseCSV() {
 csvhttp.onreadystatechange = function() {
     var pBar = document.getElementById("brxBar");
     if ( this.readyState == 4 && this.status == 200 ) {
-        var lines=this.responseText.split("\n");
-        var headers=lines[0].match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g);
+        var lines = this.responseText.split("\n");
+        var headers = lines[0].match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g);
         var tbl = document.getElementById("tLegend");
         var colors = [
             "DarkRed", "Salmon", "Gold", "GoldenRod", "Black", "Green", "Blue", "RebeccaPurple", "LightPink",
@@ -69,7 +69,13 @@ csvhttp.onreadystatechange = function() {
             cell2.innerHTML = headers[i].replaceAll('"','');
             cell2.style.color = colors[i - 1];
             cell2.style.fontWeight = 'bold';
-            cell7.innerHTML = '<form id= "interp-' + headers[i].replaceAll('"','')+ '" onchange="updateInterp(\''+ headers[i].replaceAll('"','') + '\')">  <input type="radio" name = "ans" > None <input type="radio" name = "ans" checked> Simple <input type="radio" name = "ans" > Step </form>';
+            cell7.innerHTML = `
+                <form id= "interp-` + headers[i].replaceAll('"','') + `" onchange="updateInterp(\'`+ headers[i].replaceAll('"','') + `\')">
+                    <input type="radio" name = "ans" > None 
+                    <input type="radio" name = "ans" checked> Simple 
+                    <input type="radio" name = "ans" > Step 
+                </form>
+            `;
             trdData.series.push({
                 name: headers[i].replaceAll('"',''),
                 data: []
@@ -108,8 +114,7 @@ csvhttp.onreadystatechange = function() {
 
 function updateInterp(seriesN) {
     var interp = document.getElementById("interp-" + seriesN.replaceAll('"',''));
-    var option;
-    var obj;	
+    var option;	
     if ( interp[0].checked == true ) {
         option = {
             axisX: {

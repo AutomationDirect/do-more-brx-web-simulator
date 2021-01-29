@@ -14,9 +14,10 @@ var toggleV = 0;
 
 function add() {
     if ( tags.length < 16 ) {
-        if ( document.getElementById("inp").value != "" && tags.indexOf(document.getElementById("inp").value) < 0 ) {
+        var tagName = document.getElementById("inp").value;
+        if ( tagName != "" && tags.indexOf(tagName) < 0 ) {
             tags.push({
-                tag: document.getElementById("inp").value, 
+                tag: tagName, 
                 avg: 0, 
                 min: null, 
                 max: null,
@@ -38,11 +39,23 @@ function add() {
             var cell5 = row.insertCell(4);
             var cell6 = row.insertCell(5);
             var cell7 = row.insertCell(6);
-            cell1.innerHTML = '<button type="button" style="background-color:transparent;color:black;height:15px;border: none;text-align: center;" onclick="deleteR(' + tags.length + ')">x</button>';
-            cell2.innerHTML = document.getElementById("inp").value;
-            cell2.style.color=colors[tags.length - 1];
+            cell1.innerHTML = `
+                <button type="button"
+                    style="background-color:transparent;color:black;height:15px;border: none;text-align: center;" 
+                    onclick="deleteR(` + tags.length + `)">
+                    x
+                </button>
+            `;
+            cell2.innerHTML = tagName;
+            cell2.style.color = colors[tags.length - 1];
             cell2.style.fontWeight = 'bold';
-            cell7.innerHTML =  '<form id= "interp-' + document.getElementById("inp").value + '" onchange="updateInterp(\''+ document.getElementById("inp").value + '\')">  <input type="radio" name = "ans" > None <input type="radio" name = "ans" checked> Simple <input type="radio" name = "ans" > Step </form>';
+            cell7.innerHTML =  `
+                <form id= "interp-` + tagName + `" onchange="updateInterp(\'`+ tagName + `\')">
+                    <input type="radio" name = "ans" > None
+                    <input type="radio" name = "ans" checked> Simple 
+                    <input type="radio" name = "ans" > Step 
+                </form>
+            `;
             //window.alert(JSON.stringify(trdData))
             //document.getElementById("id02").innerHTML= tagRequest.slice(1,tagRequest.length)
         }
@@ -52,8 +65,7 @@ function add() {
       
 function updateInterp(seriesN) {
     var interp = document.getElementById("interp-" + seriesN.replaceAll('"',''));
-    var option;
-    var obj;	
+    var option;	
     if ( interp[0].checked == true ) {
         option = {
             axisX: {
