@@ -13,7 +13,13 @@ let simData = {
     "Random":92.1708,
     "SineRandom":5.5991,
     "MyMain":{"RanThisScan":1,"Done":0,"FirstRun":0,"TimeSlice":65535,"ScanCounter":37579023,"RunCounter":0,"S0_15":0,"S16_31":0,"S32_47":0,"S48_63":0,"S64_79":0,"S80_95":0,"S96_111":0,"S112_127":0},
-    "EmptyPlaceholder":{}
+    "EmptyPlaceholder":{},
+    "R200": "variabledatastream",
+    "R201": "variabledatastream",
+    "R202": "variabledatastream",
+    "R203": "variabledatastream",
+    "R204": "variabledatastream",
+    "R205": "variabledatastream"
 };
 
 export default simData;
