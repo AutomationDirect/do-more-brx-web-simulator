@@ -42,7 +42,7 @@ function add() {
             cell1.innerHTML = `
                 <button type="button"
                     style="background-color:transparent;color:black;height:15px;border: none;text-align: center;" 
-                    onclick="deleteR(` + tags.length + `)">
+                    onclick="deleteR(${tags.length})">
                     x
                 </button>
             `;
@@ -50,7 +50,7 @@ function add() {
             cell2.style.color = colors[tags.length - 1];
             cell2.style.fontWeight = 'bold';
             cell7.innerHTML =  `
-                <form id= "interp-` + tagName + `" onchange="updateInterp(\'`+ tagName + `\')">
+                <form id= "interp-${tagName}" onchange="updateInterp(\'${tagName}\')">
                     <input type="radio" name = "ans" > None
                     <input type="radio" name = "ans" checked> Simple 
                     <input type="radio" name = "ans" > Step 
