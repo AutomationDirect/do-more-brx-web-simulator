@@ -35,10 +35,11 @@ app.get('/data/json', (req, res) => {
   for (const paramName in req.query) {
     // handle any bad request parameters
     if (!isValidDataJsonParameter(paramName, res)) return;
-    if (getResultsForParameter(paramName, req.query[paramName]) === "variabledatastream") {
+    let paramResults = getResultsForParameter(paramName, req.query[paramName]);
+    if ( paramResults === "variabledatastream") {
       results[paramName] = getRand();
     } else {
-      results[paramName] = getResultsForParameter(paramName, req.query[paramName]);
+      results[paramName] = paramResults;
     }
   }
   res.send(results);
