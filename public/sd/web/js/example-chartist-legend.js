@@ -12,7 +12,7 @@ var xmlhttp = new XMLHttpRequest();
 var myUpdate, tagRequest = "";
 var toggleV = 0;
 
-function add() {
+function addTag() {
     if ( tags.length < 16 ) {
         var tagName = document.getElementById("inp").value;
         if ( tagName != "" && tags.indexOf(tagName) < 0 ) {
@@ -127,7 +127,7 @@ function deleteR(row) {
     tags.forEach(buildRest);
 }
 
-function Start() {
+function startLiveTrendGraph() {
     var btn = document.getElementById("trd");
     //btn.classList.toggle("fa-stop");
     if ( toggleV == 0 ) {
@@ -155,7 +155,7 @@ function update() {
     xmlhttp.send();
 };
 
-function updateRefresh () {
+function updateRefreshRate() {
     if ( toggleV == 1 ) {
         clearInterval(myUpdate);
         myUpdate = setInterval(update, document.getElementById("refreshWs").value);

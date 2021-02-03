@@ -27,18 +27,18 @@
                 <div class="column">
                     <label>Enter Tag:  </label>
                     <input type="text" name="" id="inp" class="input-default"> 
-                    <button type="button" onclick="add()" class="btn btn-success btn-sm m-b-10 m-l-5">Add</button>
+                    <button type="button" onclick="addTag()" class="btn btn-success btn-sm m-b-10 m-l-5">Add</button>
                 </div>
                 <div class="column">
                     <label for="refreshWs">Select Refresh Rate:</label>
-                    <select id="refreshWs" name="refreshWs" onchange="updateRefresh()" >
+                    <select id="refreshWs" name="refreshWs" onchange="updateRefreshRate()" >
                         <option value="1000">1 Second</option>
                         <option value="5000">5 Seconds</option>
                         <option value="10000">10 Seconds</option>
                         <option value="30000">30 Seconds</option>
                         <option value="60000">1 Minute</option>
                     </select>
-                    <button id="playB" type="button" onclick="Start()" class="btn btn-success btn-sm m-b-10 m-l-5"> Play </button>		
+                    <button id="playB" type="button" onclick="startLiveTrendGraph()" class="btn btn-success btn-sm m-b-10 m-l-5"> Play </button>		
                 </div>
             </div>
 
@@ -53,7 +53,7 @@
                         <th width=21px></th>
                         <th width=250px>Element</th>
                         <th width=120px>Current Value</th>
-                        <th >Avg</th>
+                        <th>Avg</th>
                         <th>Min</th>
                         <th>Max</th>
                         <th width=250px>Interpolation</th>
