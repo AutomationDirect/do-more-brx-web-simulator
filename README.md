@@ -14,12 +14,12 @@
 <p align="center">
   <a href="https://github.com/automationdirect/do-more-brx-web-simulator">
     <img src="images/do-more-logo.png" alt="Logo" ">
-  <h3 align="center">AutomationDirect Do-more BRX Web Simulator</h3>
+  <h3 align="center">AutomationDirect Do-more/BRX Web Simulator</h3>
   </a>
 
 
   <p align="center">
-    A simple, fast Web page development Simulator for the Do-more BRX PLC
+    A simple, fast Web page development Simulator for the Do-more/BRX PLC
     <br />
     <br />
     ·
@@ -34,13 +34,14 @@
   <summary>Table of Contents</summary>
   <ol>
     <li>
-      <a href="#about-the-project">About the Do-more BRX Web Simulator</a>
+      <a href="#about-the-do-morebrx-web-simulator">About the Do-more/BRX Web Simulator</a>
     </li>
     <li>
       <a href="#getting-started">Getting Started</a>
       <ul>
         <li><a href="#prerequisites">Prerequisites</a></li>
         <li><a href="#installation">Installation</a></li>
+        <li><a href="#running">Running</a></li>
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
@@ -53,8 +54,9 @@
 
 
 <!-- ABOUT THE PROJECT -->
-## About the Web Simulator
-The AutomationDirect Do-more BRX Web Simulator is a web page development environment that allows web developers to more easily and quickly build pages targeted to be served from a Do-more BRX PLC. The simulator supports adding custom data Tags to match your BRX PLC project to facilitate rapid web page develop accessing your project's unique data.
+# About the Do-more/BRX Web Simulator
+The AutomationDirect Do-more/BRX Web Simulator is a web page development environment that allows web developers to more easily and quickly build pages targeted to be served from a Do-more/BRX PLC. The Web Simulator supports adding custom data Tags to match your BRX PLC project to facilitate rapid web page develop accessing your project's unique data.
+
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -75,27 +77,40 @@ The Web Simulator is built as an npm package so you will need recent version of 
 
 ### Running
 
-1. To start the mini web development enironment
+1. To start the simulated web development environment run npm start
    ```sh
    npm start
    ```
-   This starts an Express server listening on port 3000. You should see output to your terminal: Do-more BRX Web Simulator listening on port 3000! <br/>
-   And in your web browser you should be able to see a Welcome message at <a href="http//localhost:3000">localhost:3000</a>
-   <br/>
-   You are now set to start developing web pages for the Do-more BRX PLC.
-   <p>
+   This starts an Express web server listening on port 3000. You should see output to your command line terminal with the last line of: 
+   ```sh
+   Do-more BRX Web Simulator listening on port 3000!
+   ```
+
+   In your web browser you should now be able to access a Welcome message page at <a href="http://localhost:3000">http://localhost:3000</a>
+   
+   You are now set to start developing web pages for the Do-more/BRX PLC.
+   
    <b>Note:</b> You will likely need a good web development editor. If you don't already have a favorite, we used <a href="https://code.visualstudio.com/">Visual Studio Code</a> in developing this project. Its free and open source.
 
 
 <!-- USAGE EXAMPLES -->
 ## Usage
+### Web Folder Layout
+The BRX PLC can serve custom web content from 2 top level folders. The /up or "user pages" folder, and the /sd or "sd card" folder. The Web Simulator mimics this same layout under the /public folder. So any web content or files that you want the BRX PLC (or the Web Simulator) to serve need to be placed inside these folders.
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+<b>NOTE:</b> To conserve memory space on the BRX PLC and for better organization, we recommend placing most web content inside the /sd/web folder. 
+### Example Pages
+Included with the simulator are a few example pages to help jump start your project and demostrate usage of the BRX REST API. See the html files in the /public/up folder, and the related javascript files in the /public/sd/web/js folder to get started.
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+### Interactive Web Development
+Any good web development environment needs to provide immediate feedback and thats just what the Web Simulator provides. Once you start the Simulator running, to see changes to any page you are working on, simply save the changes and refresh your browser. Any updates are immediately reflected in the browser.
+### Simulated Custom Data Tags
+The Web Simulator can easily be customized to serve simulated data unique to your BRX PLC project. Examples of custom tags are found in the file brx-sim-data.js. This file is meant to be the place where you can add the unique tag names and matching JSON data to simulate how your BRX PLC project actually responses to REST API requests. 
 
-<!-- # brx-web-sim
-Web page development simulator for BRX -->
+The Web Simulator supports arrays of values just like the BRX REST API. And the Simulator can also generate random values between 0 and 100 using the special data value of "variabledatastream" to provide a live feel to gauges or other auto refreshed displays. See brx-sim-data.js for example JSON.
+
+### Deploying Web Content to your Do-More/BRX PLC
+For more information on deploying web content to your BRX PLC, please see our <a href="https://community.automationdirect.com/s/article/APPLICATION-NOTE-Do-more-BRX-How-to-create-a-custom-web-page">APPLICATION NOTE: Do-more/BRX: How to create a custom web page</a>
 
 <!-- CONTRIBUTING -->
 ## Contributing
@@ -122,7 +137,8 @@ Project Link: [https://github.com/AutomationDirect/do-more-brx-web-simulator](ht
 ## Acknowledgements
 * [Chartist.JS](https://gionkunz.github.io/chartist-js/)
 * [Canvas gauges](https://canvas-gauges.com/)
-
+* [Express JS](https://expressjs.com/)
+* [Best-README-Template](https://github.com/othneildrew/Best-README-Template)
 
 [license-shield]: https://img.shields.io/github/license/automationdirect/do-more-brx-web-simulator
 [license-url]: https://github.com/AutomationDirect/do-more-brx-web-simulator/blob/main/LICENSE

@@ -19,9 +19,9 @@ let NOT_FOUND_MSG = '<!DOCTYPE HTML>\n<html>\n<body>\n<h1>Not Found</h1>\n</body
 let BAD_REQUEST_MSG = '<!DOCTYPE HTML>\n<html>\n<body>\n<h1>Bad Request</h1>\n</body>\n</html>';
 
 app.get('/', (req, res) => {
-    res.send(`Welcome!<br> 
-    You are successfully running the AutomationDirect Do-more BRX Web development Simulator!
-    <br> To see an example page in action, go to the <a href="/up/BRX-DataLog-Chartist-Legend.html" class="active">Live Trend</a> demo, 
+    res.send(`Welcome, you are successfully running the AutomationDirect Do-more/BRX Web development Simulator!
+    <p>To see live example pages go to the <a href="/up/BRX-Linear-Gauge-JSON-Request.html">Linear Gauges</a> demo
+    <br>or go to the <a href="/up/BRX-DataLog-Chartist-Legend.html" >Live Trend</a> demo, 
     Add Tag name <b>R200</b> and then click <b>Play</b>
     `);
 });

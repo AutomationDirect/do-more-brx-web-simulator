@@ -1,4 +1,4 @@
-
+// To customize the Web Simulator to your project, add your custom data tags add matching JSON values to the simData object below. 
 let simData = {
     "SDFileNames":["FontAwesome.otf","fontawesome-webfont.eot","fontawesome-webfont.svg","fontawesome-webfont.ttf","fontawesome-webfont.woff","fontawesome-webfont.woff2","MyFILELOG_y2020m12d23.csv","MyFILELOG_y2020m12d24.csv","MyFILELOG_y2019m10d11.csv","BRX-DataLog-Chartist-Legend.html","","","","","","","","","","","","","","",""],
     "ProcessTank1":{"level":15.3,"enabled":0,"ll_alm_sp":0,"l_alm_sp":0,"h_alm_sp":20,"hh_alm_sp":25,"hh_alm":0,"h_alm":0,"ll_alm":0,"l_alm":0,"is_eff_open":0,"is_infl_open":0,"alm_count":0},
