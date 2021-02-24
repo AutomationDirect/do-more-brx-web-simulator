@@ -19,7 +19,11 @@ let NOT_FOUND_MSG = '<!DOCTYPE HTML>\n<html>\n<body>\n<h1>Not Found</h1>\n</body
 let BAD_REQUEST_MSG = '<!DOCTYPE HTML>\n<html>\n<body>\n<h1>Bad Request</h1>\n</body>\n</html>';
 
 app.get('/', (req, res) => {
-    res.send('Hello BRX Sim! <br>You are successfully running the web development simulator!');
+    res.send(`Welcome, you are successfully running the AutomationDirect Do-more/BRX Web development Simulator!
+    <p>To see live example pages go to the <a href="/up/BRX-Linear-Gauge-JSON-Request.html">Linear Gauges</a> demo
+    <br>or go to the <a href="/up/BRX-DataLog-Chartist-Legend.html" >Live Trend</a> demo, 
+    Add Tag name <b>R200</b> and then click <b>Play</b>
+    `);
 });
 
 
@@ -99,7 +103,7 @@ function isValidDataJsonParameter(paramName, res) {
 
 //  app.listen(process.env.PORT, () =>
   app.listen(3000, () =>
-  console.log('BRX-SIM Example app listening on port 3000!'),
+  console.log('Do-more BRX Web Simulator listening on port 3000!'),
 );
 
 
