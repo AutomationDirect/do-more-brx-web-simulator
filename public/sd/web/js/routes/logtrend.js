@@ -21,28 +21,29 @@ const LogTrend = Vue.component('LogTrend', {
     methods: {
         parseCSV: function() {
             this.downloading = true;
-            let dataChart = $("#datachart");
+            let dataChart = $("#datachart")[0];
             while ( dataChart.rows.length > 1 ) {
                 dataChart.deleteRow(-1);
             }
             if ( this.selectedCSV.includes(".csv") ) {
                 $.get('/sd/logs/' + this.selectedCSV)
-                    .progress( function(event) {
+                    .progress( (event) => {
                          if ( event.lengthComputable )  {
                             this.loadingBarProgress = (event.loaded / event.total) * 100;  
                          }
                     }) 
-                    .done( function() {
-                        this.downloading = true;
-                        const payload = this.responseText.split("\n");
+                    .done( (responseText) => {
+                        this.error = false;
+                        this.downloading = false;
+                        const payload = responseText.split("\n");
                         const tagNames = payload[0].match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g);
-                        addTagData(tagNames);
-                        addTableRowData(payload);
+                        this.addTagData(tagNames);
+                        this.addTableRowData(payload);
                         this.chart.update(this.trdData);
                         this.loadingBarProgress = 0;
                         this.downloading = false;
                     })
-                    .fail( function(err) {
+                    .fail( (err) => {
                         console.log(err)
                         this.error = true;
                     });
@@ -76,10 +77,10 @@ const LogTrend = Vue.component('LogTrend', {
                     this.tags[x].count = this.tags[x].count + 1;
                     this.tags[x].total = this.tags[x].total + Number(tableRowData[x + 1]);
                     if ( Number(tableRowData[x + 1]) < this.tags[x].min || this.tags[x].count == 1 ) {
-                        this.tags[x].min = Number(tableRowData[tag.pos])
+                        this.tags[x].min = Number(tableRowData[this.tags[x].pos])
                     }
                     if ( Number(tableRowData[x + 1]) > this.tags[x].max  || this.tags[x].count == 1) {
-                        this.tags[x].max =  Number(tableRowData[tag.pos]);
+                        this.tags[x].max =  Number(tableRowData[this.tags[x].pos]);
                     }
                 }
             }
@@ -110,7 +111,9 @@ const LogTrend = Vue.component('LogTrend', {
             this.resetFunction = reset;
         },
         resetZoom: function() {
-            this.resetFunction();
+            if ( this.resetFunction ) {
+                this.resetFunction();
+            }
         },
         setCSVandFileOptions: function(options) {
             this.fileOptions = options;
@@ -125,13 +128,13 @@ const LogTrend = Vue.component('LogTrend', {
     mounted: function() {
         
         $.get("/data/json?SDFileNames=SDFileNames0,25")
-            .done(function(response) {
+            .done(response => {
                 this.setCSVandFileOptions(response.SDFileNames);
-            }.bind(this))
-            .fail(function(err) {
+            })
+            .fail(err => {
                 console.log(err);
                 this.error = true;
-            }.bind(this));
+            });
 
             
         const responsiveOptions = [
@@ -183,18 +186,19 @@ const LogTrend = Vue.component('LogTrend', {
     },
     template: `
         <div class="main-container">
-            {{ selectedCSV }}
             <div class="row" id="id01"> 
                 <div class="col-4">
                     <label for="log-file-options">Select Log File:</label>
                         <select id="log-file-options" name="log-file-options" v-model="selectedCSV">
                             <template v-for="fileName in fileOptions">                
-                                <option :value="fileName">
-                                    {{ fileName }}
-                                </option>
+                                <template v-if="fileName.includes('.csv')">
+                                    <option :value="fileName">
+                                        {{ fileName }}
+                                    </option>
+                                </template>
                             </template>
                         </select>
-                        <button type="button" @click="parseCSV()" class="btn btn-success btn-sm">Load</button>
+                        <button type="button" @click="parseCSV()" class="btn btn-primary btn-sm">Load</button>
                 </div>
                 <div class="col-4" id="loading-bar-outer">
                     {{ downloading ? "Downloading" : "" }}
@@ -202,7 +206,7 @@ const LogTrend = Vue.component('LogTrend', {
                     <div id="loading-bar" :style="loadingBarStyle"></div>
                 </div>	
                 <div class="col-4">
-                    <button type="button" id="resetZoom" @click="resetZoom" class="btn btn-success btn-sm">Reset Zoom</button>
+                    <button type="button" id="resetZoom" @click="resetZoom" class="btn btn-primary btn-sm">Reset Zoom</button>
                 </div>
             </div>
 
@@ -227,13 +231,13 @@ const LogTrend = Vue.component('LogTrend', {
                         <tr>
                             <td></td>
                             <td class="font-weight-bold" 
-                                :style="'color: ' + colors[i]">
+                                :style="'color: ' + tag.color">
                                 {{ tag.name }}
                             </td>
                             <td>{{ tag.data[tag.data.length - 1].y }} </td>
-                            <td>{{ tags[i].avg }}</td>
-                            <td>{{ tags[i].min }}</td>
-                            <td>{{ tags[i].max }}</td>
+                            <td>{{ tag.avg }}</td>
+                            <td>{{ tag.min }}</td>
+                            <td>{{ tag.max }}</td>
                             <td>
                                 <form :id="'interp-' + tag.name" 
                                     @change="'updateInterpolation(' + tag.name + ')'">

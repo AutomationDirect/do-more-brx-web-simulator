@@ -48,3 +48,37 @@ a.nav-item.nav-link.router-link-active {
     -o-transform: translateY(-9px) rotate(-45deg);
     transform: translateY(-9px) rotate(-45deg);
   }
+
+  #brxProgress {
+    width: 100%;
+    background-color: white;
+  }
+  
+  #brxBar {
+    width: 0%;
+    height: 100%;
+    background-color: #0A77BB;
+  }
+  table {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  th {
+    border: 1px solid #dddddd;
+    background-image: linear-gradient(grey, white);
+    text-align: left;
+    padding: 0px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: white;
+    padding: 0px;
+    
+  }
+  tr:nth-child(odd) {
+    background-color: #dddddd;
+    padding: 2px;
+  }
