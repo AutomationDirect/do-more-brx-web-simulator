@@ -19,7 +19,7 @@ let NOT_FOUND_MSG = '<!DOCTYPE HTML>\n<html>\n<body>\n<h1>Not Found</h1>\n</body
 let BAD_REQUEST_MSG = '<!DOCTYPE HTML>\n<html>\n<body>\n<h1>Bad Request</h1>\n</body>\n</html>';
 
 app.get('/', (req, res) => {
-    res.send('Hello BRX Sim! <br>You are successfully running the web development simulator!');
+    res.redirect('/up/');
 });
 
 
