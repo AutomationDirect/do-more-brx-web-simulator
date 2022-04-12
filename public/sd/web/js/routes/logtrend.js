@@ -1,4 +1,4 @@
-const LogTrend = Vue.component('LogTrend', {
+const LogTrend = {
     data: function() {
         return {
             selectedCSV: null,
@@ -252,4 +252,4 @@ const LogTrend = Vue.component('LogTrend', {
             </div>
         </div>
     `
-});
+};

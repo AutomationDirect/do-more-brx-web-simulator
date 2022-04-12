@@ -1,4 +1,4 @@
-const LinearGauges = Vue.component('LinearGauges', {
+const LinearGauges =  {
     data: () => {
         return {
             gauge1: null,
@@ -190,4 +190,4 @@ const LinearGauges = Vue.component('LinearGauges', {
             this.updateChart()
         }, 2000);
     }
-});
+};

@@ -1,4 +1,4 @@
-const RadialGauges = Vue.component('RadialGauges', {
+const RadialGauges = {
     data: () => {
         return {
             error: false,
@@ -218,4 +218,4 @@ const RadialGauges = Vue.component('RadialGauges', {
             this.updateChart();
         }, 2000);
     }
-});
+};

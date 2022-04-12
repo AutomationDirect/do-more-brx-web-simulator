@@ -1,4 +1,4 @@
-const LiveTrend = Vue.component('LiveTrend', {
+const LiveTrend = {
     data: () => {
         return {
             tags: [],
@@ -300,4 +300,4 @@ const LiveTrend = Vue.component('LiveTrend', {
         
         this.trdData = JSON.parse('{"series": []}');
     }
-});
+};

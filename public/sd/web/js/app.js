@@ -6,15 +6,21 @@ const routes = [
     { path: '/linear-gauges', component: LinearGauges }
 ];
 
-const router = new VueRouter({
+const router = VueRouter.createRouter({
+    history: VueRouter.createWebHashHistory(),
     routes
 });
 
-const app = new Vue({
-    el: '#app',
-    router: router,
-    data: {
-        activeLink: 'home'
+const app = Vue.createApp({
+    data() {
+        return {
+            activeLink: 'home'
+        }
     }
 });
   
+app.use(router);
+
+app.component("navbar", navbar);
+
+app.mount("#app");
